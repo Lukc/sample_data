@@ -1,0 +1,4 @@
+
+You need to add the SampleBullet class from bullet.py and bullet.pxd to
+pytouhou/game/bullet.pyx and pytouhou/game/bullet.pxd.
+
