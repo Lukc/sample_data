@@ -15,12 +15,13 @@
 from math import radians
 from pytouhou.formats.exe import SHT, Shot
 
+SQ2 = 2 ** 0.5 / 2
 
 player0 = SHT()
-player0.horizontal_vertical_speed = 2.
-player0.horizontal_vertical_focused_speed = 1.5
-player0.diagonal_speed = 1.5
-player0.diagonal_focused_speed = 1.
+player0.horizontal_vertical_speed = 4.
+player0.horizontal_vertical_focused_speed = 2.
+player0.diagonal_speed = SQ2 * player0.horizontal_vertical_speed
+player0.diagonal_focused_speed = SQ2 * player0.horizontal_vertical_focused_speed
 
 shot = Shot()
 shot.interval = 10

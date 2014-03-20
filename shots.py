@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-from math import atan2
+from math import atan2, pi, sin, cos
 from copy import copy
 
 from sample_data.helpers import spawn_enemy
@@ -87,13 +87,14 @@ def shoot_single(enemy, game, shot):
             helper.y = enemy.y
 
             if helper.frame == 0:
-                enemy.touchable = False
-                enemy.collidable = False
-                enemy.visible = False
+                helper.touchable = False
+                helper.collidable = False
+                helper.visible = False
             elif helper.frame == shot.delay:
                 shot.delay = 0
 
                 shoot_single(helper, game, shot)
+                helper.removed = True
 
         spawn_enemy(game, update, enemy.x, enemy.y)
 
@@ -105,7 +106,7 @@ def shoot_at(enemy, game, target, shots):
 
 def shoot(enemy, game, shots):
     for shot in shots:
-        shoot_single(enemy, shot)
+        shoot_single(enemy, game, shot)
 
 def row(shots_per_row, angle_between_shots, shots):
     new_shots = []
@@ -121,4 +122,22 @@ def row(shots_per_row, angle_between_shots, shots):
             new_shots.append(new_shot)
 
     return new_shots
+
+def circle(shots_per_circle, shots):
+    offset = 2 * pi / shots_per_circle
+    new_shots = []
+
+    for i in xrange(shots_per_circle):
+        for shot in shots:
+            new_shot = copy(shot)
+            new_shot.angle = (
+                shot.angle + offset * i
+            )
+
+            new_shots.append(new_shot)
+
+    return new_shots
+
+def reset_bullet_movement(bullet):
+    bullet.dx, bullet.dy = cos(bullet.angle) * bullet.speed, sin(bullet.angle) * bullet.speed
 

@@ -86,6 +86,12 @@ def get_spell_life(enemy, deck, current_card):
 
     print("TROUBLE (get_spell_life): ", i, " :: ", len(deck), "  :: ", life, " :: ", current_card)
 
+
+##
+# @param deck is a table of Spell()s.
+# @param entry is the boss’ code to be executed when entering the area. It
+#  must return True when the deck’s spells are to be fought.
+# @param exit Same as entry. But for the exit.
 def bossmode(enemy, game, entry, deck, exit = None):
     global current_card
 

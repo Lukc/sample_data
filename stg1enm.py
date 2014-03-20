@@ -1,6 +1,6 @@
 from pytouhou.formats.anm0 import ANM0
 
-texture_name = u'stg1enm.png'
+texture_name = u'stgenm.png'
 width = 256
 height = 256
 

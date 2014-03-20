@@ -75,7 +75,7 @@ class SampleBullet(Bullet):
         elif self.state == CANCELLED:
             pass
         elif self.custom_update:
-            self.custom_update(self)
+            self.custom_update(self, self._game)
 
         self.update_position()
         self.cleanup()
